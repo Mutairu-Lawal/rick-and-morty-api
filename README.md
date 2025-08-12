@@ -21,7 +21,7 @@ A Next.js app to explore Rick & Morty characters, view details, and manage favor
 
 ## 🏗️ Architecture & Trade-offs
 
-- **Framework:** Built with Next.js 13+ (App Router, React Server Components).
+- **Framework:** Built with Next.js 15+ (App Router, React Server Components).
 - **Data Fetching:** Uses React Query for client-side caching and async state management.
 - **Styling:** Tailwind CSS for rapid, utility-first styling and dark mode support.
 - **Image Optimization:** Next.js `<Image />` for optimized, responsive images. External domains are whitelisted in `next.config.ts`.

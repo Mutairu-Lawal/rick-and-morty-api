@@ -2,6 +2,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getCharacter } from '@/lib/api';
 import { useParams } from 'next/navigation';
+import Image from 'next/image';
 
 export default function CharacterDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -14,7 +15,7 @@ export default function CharacterDetailPage() {
 
   return (
     <div className="p-4">
-      <img src={data.image} alt={data.name} className="w-48 rounded" />
+      <Image src={data.image} alt={data.name} className="w-48 rounded" />
       <h1 className="text-2xl font-bold">{data.name}</h1>
       <p>
         {data.status} - {data.species}

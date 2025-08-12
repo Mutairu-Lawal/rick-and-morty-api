@@ -18,7 +18,7 @@ export default function RootLayout({
       <body className="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
         <Providers>
           <header className="flex items-center justify-between p-4 border-b bg-white dark:bg-gray-800">
-            <Link href={'/'}>
+            <Link href="/" prefetch={false} scroll={true}>
               <h1 className="text-xl font-bold">Rick & Morty Explorer</h1>
             </Link>
             <ThemeToggle />

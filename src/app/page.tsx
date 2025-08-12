@@ -26,6 +26,16 @@ type CharactersResponse = {
 };
 
 function PageContent() {
+  // Reset state when on home route (client only)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.pathname === '/') {
+      setSearchInput('');
+      const params = new URLSearchParams();
+      params.set('page', '1');
+      router.replace(`/?${params.toString()}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -55,7 +65,7 @@ function PageContent() {
     Error
   >({
     queryKey: ['characters', page, debounced, statusParam],
-    queryFn: () => getCharacters(page, debounced),
+    queryFn: () => getCharacters(page, debounced, statusParam),
     // keepPreviousData is not a valid option for useQuery in v5
   });
 
@@ -103,10 +113,18 @@ function PageContent() {
             className="border rounded px-3 py-2"
             aria-label="Filter by status"
           >
-            <option value="all">All Status</option>
-            <option value="alive">Alive</option>
-            <option value="dead">Dead</option>
-            <option value="unknown">Unknown</option>
+            <option value="all" className="bg-gray-900 dark:bg-gray-800">
+              All Status
+            </option>
+            <option value="alive" className="bg-gray-900 dark:bg-gray-800">
+              Alive
+            </option>
+            <option value="dead" className="bg-gray-900 dark:bg-gray-800">
+              Dead
+            </option>
+            <option value="unknown" className="bg-gray-900 dark:bg-gray-800">
+              Unknown
+            </option>
           </select>
         </div>
       </div>

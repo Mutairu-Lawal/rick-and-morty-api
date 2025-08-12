@@ -26,16 +26,16 @@ type CharactersResponse = {
 };
 
 function PageContent() {
-  // Reset state when on home route
+  // Reset state when on home route (client only)
   useEffect(() => {
-    if (window.location.pathname === '/') {
+    if (typeof window !== 'undefined' && window.location.pathname === '/') {
       setSearchInput('');
       const params = new URLSearchParams();
       params.set('page', '1');
       router.replace(`/?${params.toString()}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [window.location.pathname]);
+  }, []);
   const router = useRouter();
   const searchParams = useSearchParams();
 

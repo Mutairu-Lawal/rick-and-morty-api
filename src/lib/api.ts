@@ -5,7 +5,7 @@ export const api = axios.create({
 });
 
 export async function getCharacters(page = 1, name = '', status = '') {
-  const params: Record<string, any> = { page };
+  const params: Record<string, string | number> = { page };
   if (name) params.name = name;
   if (status && status !== 'all') params.status = status;
   const res = await api.get('/character', { params });

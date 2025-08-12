@@ -1,5 +1,5 @@
 import './globals.css';
-import Providers from '@/lib/queryClient';
+import Providers from '@/lib/Providers';
 import ThemeToggle from '@/components/ThemeToggle';
 
 export const metadata = {

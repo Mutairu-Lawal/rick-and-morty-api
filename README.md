@@ -43,7 +43,6 @@ A Next.js app to explore Rick & Morty characters, view details, and manage favor
 
 ## ⏳ If I Had More Time, I Would...
 
-- Add pagination or infinite scroll for character lists.
 - Implement error boundaries and loading skeletons for better UX.
 - Add tests (unit, integration, e2e) for reliability.
 - Improve accessibility (a11y) and keyboard navigation.

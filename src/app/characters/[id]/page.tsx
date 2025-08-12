@@ -15,7 +15,13 @@ export default function CharacterDetailPage() {
 
   return (
     <div className="p-4">
-      <Image src={data.image} alt={data.name} className="w-48 rounded" />
+      <Image
+        src={data.image}
+        alt={data.name}
+        className="w-48 rounded"
+        width={192}
+        height={192}
+      />
       <h1 className="text-2xl font-bold">{data.name}</h1>
       <p>
         {data.status} - {data.species}

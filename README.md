@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rick & Morty Explorer
 
-## Getting Started
+A Next.js app to explore Rick & Morty characters, view details, and manage favorites.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 How to Run
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Install dependencies:**
+   ```bash
+   pnpm install
+   ```
+2. **Start the development server:**
+   ```bash
+   pnpm dev
+   ```
+3. **Open your browser:**
+   Visit [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏗️ Architecture & Trade-offs
 
-## Learn More
+- **Framework:** Built with Next.js 13+ (App Router, React Server Components).
+- **Data Fetching:** Uses React Query for client-side caching and async state management.
+- **Styling:** Tailwind CSS for rapid, utility-first styling and dark mode support.
+- **Image Optimization:** Next.js `<Image />` for optimized, responsive images. External domains are whitelisted in `next.config.ts`.
+- **Favorites:** Managed in localStorage via a custom React hook for persistence across sessions.
+- **Debounced Search:** Custom hook to reduce API calls while searching.
+- **Component Structure:**
+  - `CharacterCard` for list/grid display
+  - `SearchBar` for filtering
+  - `ThemeToggle` for dark/light mode
+  - Detail page for each character
 
-To learn more about Next.js, take a look at the following resources:
+**Trade-offs:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Chose React Query for simplicity and caching, but for larger apps, server-side fetching or SWR could be considered.
+- LocalStorage for favorites is simple but not shareable across devices.
+- No global state manager (like Redux) to keep the app lightweight.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ⏳ If I Had More Time, I Would...
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Add pagination or infinite scroll for character lists.
+- Implement error boundaries and loading skeletons for better UX.
+- Add tests (unit, integration, e2e) for reliability.
+- Improve accessibility (a11y) and keyboard navigation.
+- Polish UI/UX with animations and transitions.
+- Deploy to Vercel with preview URLs.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+Feel free to reach out for questions or suggestions!

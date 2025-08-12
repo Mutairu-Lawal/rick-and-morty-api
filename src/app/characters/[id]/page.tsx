@@ -19,6 +19,9 @@ export default function CharacterDetailPage() {
       <p>
         {data.status} - {data.species}
       </p>
+      <p>Last known location: {data.location.name}</p>
+      <p>Origin: {data.origin.name}</p>
+      <p>Episodes: {data.episode.length}</p>
     </div>
   );
 }

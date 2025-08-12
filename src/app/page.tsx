@@ -1,11 +1,29 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { getCharacters } from '@/lib/api';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useFavorites } from '@/hooks/useFavorites';
 import CharacterCard from '@/components/CharacterCard';
+
+type Character = {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  image: string;
+};
+
+type CharactersResponse = {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+  results: Character[];
+};
 
 export default function Page() {
   const router = useRouter();
@@ -32,19 +50,21 @@ export default function Page() {
 
   const page = pageParam;
 
-  const { data, isLoading, isError, refetch } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery<
+    CharactersResponse,
+    Error
+  >({
     queryKey: ['characters', page, debounced, statusParam],
-    queryFn: ({ signal }) =>
-      getCharacters(page, debounced, statusParam, signal),
-    keepPreviousData: true,
+    queryFn: () => getCharacters(page, debounced),
+    // keepPreviousData is not a valid option for useQuery in v5
   });
 
-  const results = data?.results || [];
+  const results: Character[] = data?.results || [];
 
   if (isError) {
     return (
       <div className="p-6 text-center">
-        <p>Error loading characters.</p>
+        <p>Error loading characters...</p>
         <button
           onClick={() => refetch()}
           className="mt-2 px-4 py-2 bg-red-500 text-white rounded"
@@ -99,7 +119,7 @@ export default function Page() {
       ) : (
         <div>
           <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-            {results.map((char) => (
+            {results.map((char: Character) => (
               <CharacterCard
                 key={char.id}
                 character={char}
